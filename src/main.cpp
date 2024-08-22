@@ -107,6 +107,8 @@ void opcontrol() {
 			// move the robot
 			chassis.curvature(leftY, rightX);
 
+
+		// intake control
 		if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
 			intake.move(-100);
 		}
@@ -117,6 +119,15 @@ void opcontrol() {
 		
 		else {
 			intake.move(0);
+		}
+
+		//claw control
+		if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
+			Claw.set_value(true);
+		}
+		
+		else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R2)){
+			Claw.set_value(false);
 		}
 
 		//delay to save resources 

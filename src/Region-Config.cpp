@@ -5,7 +5,7 @@
 // create motor for intake on port 2
 pros::Motor intake(14);
 
-pros::ADIDigitalOut Claw(4);
+pros::ADIDigitalOut Claw(8);
 pros::ADIPotentiometer drive_select(2);
 pros::ADIPotentiometer auto_select (3);
 
