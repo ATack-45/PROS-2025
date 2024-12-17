@@ -1,15 +1,21 @@
 #include "main.h"
 #include "lemlib/api.hpp"
 #include "api.h"
+#include "pros/adi.hpp"
+#include "pros/optical.hpp"
+#include "pros/rotation.hpp"
 
 
 #pragma once
 
 extern pros::Motor intake;
+extern pros::MotorGroup lift_motors;
+extern pros::adi::DigitalOut Claw;
+extern pros::adi::DigitalOut Blooper;
 
-extern pros::ADIDigitalOut Claw;
-extern pros::ADIPotentiometer drive_select;
-extern pros::ADIPotentiometer auto_select;
+extern pros::adi::Potentiometer auto_select;
+extern pros::Optical optical_sensor;
+extern pros::Rotation wall_arm;
 
 
 extern pros::MotorGroup Left_motors;
