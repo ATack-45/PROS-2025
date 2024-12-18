@@ -157,9 +157,12 @@ void competition_initialize() {}
  * will be stopped. Re-enabling the robot will restart the task, not re-start it
  * from where it left off.
  */
+ ASSET(test_txt);
 void autonomous() {
-	// chassis.follow(, float lookahead, int timeout)
-
+	 chassis.setPose(0, 0, 0);
+    // lookahead distance: 15 inches
+    // timeout: 2000 ms
+    chassis.follow(test_txt, 15, 150000);
 			// 257.75
 			// 9.8, -40
 			// 		
