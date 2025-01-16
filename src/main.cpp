@@ -14,7 +14,7 @@
 
 bool isRed;
 int reversed = 1;
-const int arm_positions[] = {348, 319,  188}; // Adjust these values based on your arm's setup
+const int arm_positions[] = {356, 328,  168}; // Adjust these values based on your arm's setup
 const int num_positions = sizeof(arm_positions) / sizeof(arm_positions[0]);
 int current_position_index = 0;
 int target_position = 0;
