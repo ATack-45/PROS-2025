@@ -8,7 +8,7 @@
 
 #pragma once
 
-extern pros::Motor intake;
+extern pros::MotorGroup intake;
 extern pros::MotorGroup lift_motors;
 extern pros::adi::DigitalOut Claw;
 extern pros::adi::DigitalOut Blooper;

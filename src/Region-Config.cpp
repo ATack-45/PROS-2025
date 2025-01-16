@@ -7,7 +7,7 @@
 #include "pros/optical.hpp"
 
 // creating devices
-pros::Motor intake(-11);
+pros::MotorGroup intake({-11,-12});
 pros::MotorGroup lift_motors({-5, 7});
 pros::adi::DigitalOut Claw(8);
 pros::adi::DigitalOut Blooper(1);

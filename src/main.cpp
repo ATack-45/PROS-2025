@@ -2,6 +2,7 @@
 #include "main.h"
 #include "Region-config.h"
 #include "lemlib/chassis/chassis.hpp"
+#include "pros/abstract_motor.hpp"
 #include "pros/llemu.hpp"
 #include "pros/misc.h"
 #include "pros/motors.h"
@@ -14,7 +15,7 @@
 
 bool isRed;
 int reversed = 1;
-const int arm_positions[] = {348, 319,  188}; // Adjust these values based on your arm's setup
+const int arm_positions[] = {356, 328,  168}; // Adjust these values based on your arm's setup
 const int num_positions = sizeof(arm_positions) / sizeof(arm_positions[0]);
 int current_position_index = 0;
 int target_position = 0;
@@ -98,6 +99,7 @@ void initialize() {
 		const int tolerance = 1; // Degrees of error tolerance
     	const int max_speed = 127;
     	const double kP = 5; // Proportional constant
+		lift_motors.set_brake_mode_all(pros::MotorBrake::hold);
 	
     while (true) {
         if (move_arm_task_running) {
@@ -157,15 +159,41 @@ void competition_initialize() {}
  * will be stopped. Re-enabling the robot will restart the task, not re-start it
  * from where it left off.
  */
- ASSET(test_txt);
+
 void autonomous() {
-	 chassis.setPose(0, 0, 0);
-    // lookahead distance: 15 inches
-    // timeout: 2000 ms
-    chassis.follow(test_txt, 15, 150000);
-			// 257.75
-			// 9.8, -40
-			// 		
+	chassis.setPose(1.5, -6, -35);
+	chassis.moveToPose(3, -8, -35, 1000,{.forwards=false},false);
+	Claw.set_value(true);
+	pros::delay(500);
+	intake.move(-127);
+	pros::delay(500);
+	chassis.moveToPose(-26, -14, -90, 8000,{.maxSpeed=35}, false);
+	pros::delay(1000);
+	chassis.moveToPose(-2, -12.5, -90, 5000,{.forwards=false, .maxSpeed=50},false);
+	chassis.turnToHeading(-45, 1000);
+	chassis.moveToPose(-15, -3, -45, 3000,{},false);
+	pros::delay(1000);
+
+	chassis.turnToHeading(-180, 1500,{.maxSpeed=80});
+	chassis.resetLocalPosition();
+	chassis.moveToPose(-1, -30, -180, 3000,{},false);
+	pros::delay(1000);
+	chassis.turnToHeading(-270,1000);
+	chassis.moveToPose(19,-32.5,-257,2500,{},false);
+	pros::delay(1000);
+	chassis.moveToPose(-12, 4, -215,2500,{.forwards=false, .minSpeed=85},false);
+	intake.move(127);
+	Claw.set_value(false);
+	pros::delay(500);
+	intake.move(0);
+	chassis.moveToPose(38,-9,-270,5000,{},false);
+	chassis.turnToHeading(270,1000);
+	chassis.moveToPose(64.25, -7.5,-90,5000,{.forwards=false},false);
+	Claw.set_value(true);
+	chassis.turnToHeading(0,1000);
+
+
+   
 }
 
 
@@ -181,7 +209,7 @@ void autonomous() {
  * If the robot is disabled or communications is lost, the
  * operator control task will be stopped. Re-enabling the robot will restart the
  * task, not resume it from where it left off.
- */
+ */ 
 void opcontrol() {
 	pros::Controller master(pros::E_CONTROLLER_MASTER);
 	chassis.setBrakeMode(pros::E_MOTOR_BRAKE_COAST);
