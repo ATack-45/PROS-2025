@@ -158,92 +158,117 @@ void competition_initialize() {}
  * from where it left off.
  */
 void autonomous() {
-	int auto_v; 
-	auto_v = floor(auto_select.get_value() /1024);
-	pros::lcd::print(3, "Pot auto:%d", auto_v);
-	switch (auto_v){
-		case 0: //blue left 3
-			chassis.moveToPose(-3,-23, 32, 3000,{.forwards = false}, false);
-			Claw.set_value(true);
-			pros::delay(500);
-			intake.move(-127);
-			pros::delay(100);
-			chassis.turnToHeading(99, 1000);
-			chassis.moveToPoint(12.6, -24.5, 3000,{},false);
-			pros::delay(300);
-			chassis.turnToHeading(20, 1000,{},false);
-			Blooper.set_value(true);
-			chassis.moveToPose(28, 5, 20, 2500,{},false);
-			chassis.turnToHeading(170, 1000,{},false);
-			Blooper.set_value(false);
-			intake.move(100);
-			current_position_index = (current_position_index + 3) % num_positions;
-            target_position = arm_positions[current_position_index];
-            move_arm_task_running = true;
-			chassis.moveToPose(-2, -29, 225, 3000);
-
-			break;
-		case 1: // blue right 2
-			chassis.moveToPose(-3, -23, 32, 3000,{.forwards = false},false);
-			Claw.set_value(true);
-			pros::delay(500);
-			intake.move(-127);
-			pros::delay(200);
-			chassis.turnToHeading(255, 1000);
-			chassis.moveToPose(-26, -27.8, 255, 2500,{},false);
-			pros::delay(300);
-			chassis.turnToHeading(-155, 1000,{},false);
-			chassis.moveToPose(-28, -43.25, -170, 3000,{},false);
-			pros::delay(1000);
-			chassis.turnToHeading(-130, 1000,{},false);
-			chassis.moveToPose(-33, -43.25,-135, 1000,{},false);
+	// int auto_v; 
+	// auto_v = floor(auto_select.get_value() /1024);
+	// pros::lcd::print(3, "Pot auto:%d", auto_v);
+	// switch (auto_v){
+	// 	case 0: //blue left 3
+	// 		chassis.moveToPose(-3,-23, 32, 3000,{.forwards = false}, false);
+	// 		Claw.set_value(true);
+	// 		pros::delay(500);
+	// 		intake.move(-127);
+	// 		pros::delay(100);
+	// 		chassis.turnToHeading(99, 1000);
+	// 		chassis.moveToPoint(12.6, -24.5, 3000,{},false);
+	// 		pros::delay(300);
+	// 		chassis.turnToHeading(20, 1000,{},false);
+	// 		Blooper.set_value(true);
+	// 		chassis.moveToPose(28, 5, 20, 2500,{},false);
+	// 		chassis.turnToHeading(170, 1000,{},false);
+	// 		Blooper.set_value(false);
+	// 		intake.move(100);
+	// 		current_position_index = (current_position_index + 3) % num_positions;
+    //         target_position = arm_positions[current_position_index];
+    //         move_arm_task_running = true;
+	// 		chassis.moveToPose(-2, -29, 225, 3000);
 
 	// 		break;
-		// case 2: // red right 1
-			chassis.moveToPose(3,-23, -32, 3000,{.forwards = false}, false);
+	// // 	case 1: // blue right 2
+	// 		chassis.moveToPose(-3, -23, 32, 3000,{.forwards = false},false);
+	// 		Claw.set_value(true);
+	// 		pros::delay(500);
+	// 		intake.move(-127);
+	// 		pros::delay(200);
+	// 		chassis.turnToHeading(255, 1000);
+	// 		chassis.moveToPose(-26, -27.8, 255, 2500,{},false);
+	// 		pros::delay(300);
+	// 		chassis.turnToHeading(-155, 1000,{},false);
+	// 		chassis.moveToPose(-28, -43.25, -170, 3000,{},false);
+	// 		pros::delay(1000);
+	// 		chassis.turnToHeading(-130, 1000,{},false);
+	// 		chassis.moveToPose(-33, -43.25,-135, 1000,{},false);
+
+		 // blue right 2
+			chassis.moveToPose(5, -55.5, -32, 5000,{.forwards = false},false);
 			Claw.set_value(true);
+			chassis.moveToPose(-2, -24.5, 0, 4000,{},false);
 			pros::delay(500);
 			intake.move(-127);
-			pros::delay(100);
-			chassis.turnToHeading(-82, 1000);
-			chassis.moveToPose(-12.6, -24.5,-99, 3000,{},false);
-			pros::delay(300);
-			chassis.turnToHeading(-20, 1000,{},false);
-			Blooper.set_value(true);
+			pros::delay(500);
+			Claw.set_value(false);
+			chassis.turnToHeading(-255, 1000,{},false);
+			chassis.turnToHeading(255, 1000,{},false);
+			chassis.moveToPose(26, -20, 260, 5000,{.forwards = false},false);
+			chassis.turnToHeading(310,1000,{},false);
+			chassis.moveToPose(33, -32, 315, 2000,{.forwards = false},false);
+			Claw.set_value(true);
+
+
+
+			// chassis.moveToPose(-26, -27.8, 255, 2500,{},false);
+			// pros::delay(300);
+			// chassis.turnToHeading(-155, 1000,{},false);
+			// chassis.moveToPose(-28, -43.25, -170, 3000,{},false);
+			// pros::delay(1000);
+			// chassis.turnToHeading(-130, 1000,{},false);
+			// chassis.moveToPose(-33, -43.25,-135, 1000,{},false);
+
+	// // 		break;
+	// 	// case 2: // red right 1
+	// 		chassis.moveToPose(3,-23, -32, 3000,{.forwards = false}, false);
+	// 		Claw.set_value(true);
+	// 		pros::delay(500);
+	// 		intake.move(-127);
+	// 		pros::delay(100);
+	// 		chassis.turnToHeading(-82, 1000);
+	// 		chassis.moveToPose(-12.6, -24.5,-99, 3000,{},false);
+	// 		pros::delay(300);
+	// 		chassis.turnToHeading(-20, 1000,{},false);
+	// 		Blooper.set_value(true);
 			
-			chassis.moveToPose(-28, 5, -20, 2500,{},false);
-			intake.move(0);
-			chassis.turnToHeading(-170, 1000,{.direction = AngularDirection::CW_CLOCKWISE},false);
-			Blooper.set_value(false);
+	// 		chassis.moveToPose(-28, 5, -20, 2500,{},false);
+	// 		intake.move(0);
+	// 		chassis.turnToHeading(-170, 1000,{.direction = AngularDirection::CW_CLOCKWISE},false);
+	// 		Blooper.set_value(false);
 		
-			break;
-		case 3: //red left 0
-		//move to first goal
-			chassis.moveToPose(3, -23, -32, 3000,{.forwards = false},false);
-			Claw.set_value(true);
-			pros::delay(500);
-			intake.move(-127);
-			pros::delay(200);
-			//turn to first ring
-			chassis.turnToHeading(-255, 1000);
-			//go to first ring
-			chassis.moveToPose(26, -27.8, -255, 2500,{},false);
-			pros::delay(300);
-			//turn to mid
-			chassis.turnToHeading(155, 1000,{},false);
-			//move to mid
-			chassis.moveToPose(28, -43.25, 170, 3000,{},false);
-			pros::delay(1000);
-			//backup
-			chassis.moveToPoint(33, -30, 1000,{.forwards = false},false);
-			//turn to ladder
-			chassis.turnToHeading(275.75, 1000);
-			current_position_index = (current_position_index + 3) % num_positions;
-            target_position = arm_positions[current_position_index];
-            move_arm_task_running = true;
-			chassis.moveToPose(9.8, -40,300, 1000);
-			break;
-	}
+	// 		break;
+	// 	case 3: //red left 0
+	// 	//move to first goal
+	// 		chassis.moveToPose(3, -23, -32, 3000,{.forwards = false},false);
+	// 		Claw.set_value(true);
+	// 		pros::delay(500);
+	// 		intake.move(-127);
+	// 		pros::delay(200);
+	// 		//turn to first ring
+	// 		chassis.turnToHeading(-255, 1000);
+	// 		//go to first ring
+	// 		chassis.moveToPose(26, -27.8, -255, 2500,{},false);
+	// 		pros::delay(300);
+	// 		//turn to mid
+	// 		chassis.turnToHeading(155, 1000,{},false);
+	// 		//move to mid
+	// 		chassis.moveToPose(28, -43.25, 170, 3000,{},false);
+	// 		pros::delay(1000);
+	// 		//backup
+	// 		chassis.moveToPoint(33, -30, 1000,{.forwards = false},false);
+	// 		//turn to ladder
+	// 		chassis.turnToHeading(275.75, 1000);
+	// 		current_position_index = (current_position_index + 3) % num_positions;
+    //         target_position = arm_positions[current_position_index];
+    //         move_arm_task_running = true;
+	// 		chassis.moveToPose(9.8, -40,300, 1000);
+	// 		break;
+	// }
 
 			// 257.75
 			// 9.8, -40
@@ -294,11 +319,11 @@ void opcontrol() {
 
 		// intake control
 		if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
-			intake.move(-127 * reversed);
+			intake.move_voltage(-12000);
 		}
 		
 		else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L2)){
-			intake.move(127 * reversed);
+			intake.move_voltage(12000);
 		}
 		
 		else {
