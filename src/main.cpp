@@ -167,32 +167,44 @@ void autonomous() {
 	pros::delay(500);
 	intake.move(-127);
 	pros::delay(500);
-	chassis.moveToPose(-26, -14, -90, 8000,{.maxSpeed=35}, false);
-	pros::delay(1000);
+	chassis.moveToPose(-26, -14, -90, 8000,{.maxSpeed=40}, false);
+	pros::delay(500);
 	chassis.moveToPose(-2, -12.5, -90, 5000,{.forwards=false, .maxSpeed=50},false);
 	chassis.turnToHeading(-45, 1000);
 	chassis.moveToPose(-15, -3, -45, 3000,{},false);
-	pros::delay(1000);
+	pros::delay(100);
 
 	chassis.turnToHeading(-180, 1500,{.maxSpeed=80});
 	chassis.resetLocalPosition();
 	chassis.moveToPose(-1, -30, -180, 3000,{},false);
-	pros::delay(1000);
+	pros::delay(500);
 	chassis.turnToHeading(-270,1000);
 	chassis.moveToPose(19,-32.5,-257,2500,{},false);
-	pros::delay(1000);
+	pros::delay(500);
 	chassis.moveToPose(-12, 4, -215,2500,{.forwards=false, .minSpeed=85},false);
 	intake.move(127);
 	Claw.set_value(false);
 	pros::delay(500);
 	intake.move(0);
-	chassis.moveToPose(38,-9,-270,5000,{},false);
+	chassis.moveToPose(38,-5,-270,5000,{},false);
 	chassis.turnToHeading(270,1000);
-	chassis.moveToPose(64.25, -7.5,-90,5000,{.forwards=false},false);
+	chassis.resetLocalPosition();
+
+	chassis.moveToPose(20, -3,-90,3000,{.forwards=false},false);	
 	Claw.set_value(true);
-	chassis.turnToHeading(0,1000);
-
-
+	pros::delay(750);
+	chassis.turnToHeading(180,1000);
+	intake.move(-127);
+	chassis.moveToPose(25.5, -23, 185,3000,{},false);
+	chassis.turnToHeading(100,1000);
+	chassis.moveToPose(48, -28, 90,3000,{},false);
+	pros::delay(1000);
+	chassis.turnToHeading(0,1000,{},false);
+	chassis.setPose(48,-28,0);
+	chassis.moveToPose(55,-8,15,3000,{},false);
+	pros::delay(500);
+	chassis.turnToHeading(90,1000);
+	chassis.moveToPose(65,-5,95,2000,{},false);
    
 }
 
