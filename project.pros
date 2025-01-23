@@ -1,7 +1,7 @@
 {
   "py/object": "pros.conductor.project.Project",
   "py/state": {
-    "project_name": "High stakes",
+    "project_name": "High stakes COMP",
     "target": "v5",
     "templates": {
       "LemLib": {
@@ -299,7 +299,7 @@
     },
     "upload_options": {
       "icon": "pros",
-      "slot": 1
+      "slot": 3
     },
     "use_early_access": false
   }

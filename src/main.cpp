@@ -183,7 +183,12 @@ void autonomous() {
 	// 		chassis.moveToPose(-2, -29, 225, 3000);
 
 	// 		break;
-	// // 	case 1: // blue right 2
+
+
+
+
+
+	// // 	case 1: // blue right 2 COMP
 	// 		chassis.moveToPose(-3, -23, 32, 3000,{.forwards = false},false);
 	// 		Claw.set_value(true);
 	// 		pros::delay(500);
@@ -199,20 +204,18 @@ void autonomous() {
 	// 		chassis.moveToPose(-33, -43.25,-135, 1000,{},false);
 
 		 // blue right 2
-			chassis.moveToPose(5, -55.5, -32, 5000,{.forwards = false},false);
+			chassis.moveToPose(-5, -55.5, 32, 5000,{.forwards = false},false);
 			Claw.set_value(true);
-			chassis.moveToPose(-2, -24.5, 0, 4000,{},false);
+			chassis.moveToPose(2, -24.5, 0, 4000,{},false);
 			pros::delay(500);
 			intake.move(-127);
 			pros::delay(500);
 			Claw.set_value(false);
-			chassis.turnToHeading(-255, 1000,{},false);
 			chassis.turnToHeading(255, 1000,{},false);
-			chassis.moveToPose(26, -20, 260, 5000,{.forwards = false},false);
-			chassis.turnToHeading(310,1000,{},false);
-			chassis.moveToPose(33, -32, 315, 2000,{.forwards = false},false);
+			chassis.moveToPose(-11, -20, -260, 5000,{.forwards = false},false);
+			chassis.turnToHeading(-380,1000,{},false);
+			chassis.moveToPose(-25, -34, -320, 2000,{.forwards = false},false);
 			Claw.set_value(true);
-
 
 
 			// chassis.moveToPose(-26, -27.8, 255, 2500,{},false);
