@@ -99,7 +99,7 @@ void initialize() {
 		const int tolerance = 1; // Degrees of error tolerance
     	const int max_speed = 127;
     	const double kP = 5; // Proportional constant
-		lift_motors.set_brake_mode_all(pros::MotorBrake::hold);
+		lift.set_brake_mode_all(pros::MotorBrake::hold);
 	
     while (true) {
         if (move_arm_task_running) {
@@ -112,7 +112,7 @@ void initialize() {
 					target_position = arm_positions[current_position_index];
 				}
 				else{
-					lift_motors.move_velocity(0);
+					lift.move_velocity(0);
                 	move_arm_task_running = false; // Stop the task
 				}
                 
@@ -120,7 +120,7 @@ void initialize() {
                 // Calculate motor speed
                 int motor_speed = static_cast<int>(error * kP);
                 motor_speed = std::clamp(motor_speed, -max_speed, max_speed);
-                lift_motors.move_velocity(motor_speed);
+                lift.move_velocity(motor_speed);
             }
 			
         }
@@ -225,7 +225,7 @@ void autonomous() {
 void opcontrol() {
 	pros::Controller master(pros::E_CONTROLLER_MASTER);
 	chassis.setBrakeMode(pros::E_MOTOR_BRAKE_COAST);
-	lift_motors.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+	lift.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 	bool blooperDeploy = false;
 	
 
@@ -252,17 +252,16 @@ void opcontrol() {
 
 		// intake control
 		if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
-			intake.move(-127 * reversed);
+			intake.move_voltage(-10600);
 		}
 		
 		else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L2)){
-			intake.move(127 * reversed);
+			intake.move_voltage(10600);
 		}
 		
 		else {
 			intake.move(0);
 		}
-
 		//claw control
 		if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
 			Claw.set_value(true);
