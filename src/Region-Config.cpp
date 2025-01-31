@@ -8,8 +8,8 @@
 
 // creating devices
 pros::MotorGroup intake({11,-12});
-pros::MotorGroup lift_motors({-5, 7});
-pros::adi::DigitalOut Claw(8);
+pros::Motor lift(-5);
+pros::adi::DigitalOut Claw(3);
 pros::adi::DigitalOut Blooper(1);
 
 
